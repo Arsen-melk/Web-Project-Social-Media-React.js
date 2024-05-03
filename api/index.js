@@ -28,7 +28,10 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 // Middleware
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || "http://localhost:8800", 
+  optionsSuccessStatus: 200 
+}));
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
