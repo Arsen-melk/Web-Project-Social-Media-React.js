@@ -17,7 +17,7 @@ async function connect() {
   try {
     await mongoose.connect(process.env.MONGO_URL,{
       useNewUrlParser: true,
-      useUnifiedTopology: true, //popoxvac
+      useUnifiedTopology: true
     });
     console.log("Connected to MongoDB");
   } catch (error) {
@@ -61,7 +61,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 
-const PORT = process.env.PORT || 8800; //popoxvac
+const PORT = process.env.PORT || 8800;
 
 
 app.listen(PORT, () => {
