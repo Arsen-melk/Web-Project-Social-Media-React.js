@@ -15,7 +15,10 @@ dotenv.config();
 
 async function connect() {
   try {
-    await mongoose.connect(process.env.MONGO_URL);
+    await mongoose.connect(process.env.MONGO_URL,{
+      useNewUrlParser: true,
+      useUnifiedTopology: true, //popoxvac
+    });
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
@@ -58,6 +61,9 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 
-app.listen(8800, () => {
+const PORT = process.env.PORT || 8800; //popoxvac
+
+
+app.listen(PORT, () => {
   console.log("Backend server is running!");
 });
