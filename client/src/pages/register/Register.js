@@ -4,6 +4,9 @@ import "./register.css";
 import axios from "axios";
 import {Link, useNavigate} from "react-router-dom";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8800/api";
+
+
 export default function Register() {
   const username = useRef();
   const email = useRef();
@@ -22,7 +25,7 @@ export default function Register() {
         password: password.current.value,
       }
       try {
-        await axios.post("/auth/register", user);
+        await axios.post(`${API_URL}/auth/register`, user);
         navigate("/login");
       }catch(err){
         console.log(err)
